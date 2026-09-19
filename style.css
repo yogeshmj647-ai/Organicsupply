@@ -1,0 +1,226 @@
+:root {
+  --bg: #F6F7F3;
+  --card-bg: #FFFFFF;
+  --primary: #1F5C3A;
+  --primary-dark: #143D27;
+  --accent: #E07A28;
+  --text: #262B26;
+  --text-muted: #5B6459;
+  --line: #DDE2D8;
+  --font: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.55;
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h2 { margin: 0 0 6px; font-size: 1.3rem; color: var(--primary-dark); }
+h3 { margin: 0; font-size: 1.1rem; color: var(--primary-dark); }
+
+.card-sub { color: var(--text-muted); margin: 0 0 20px; font-size: 0.94rem; }
+
+/* Topbar */
+.topbar {
+  background: var(--primary);
+  color: #fff;
+  padding: 18px 0 14px;
+}
+
+.topbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.wallet-status {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+}
+
+/* Buttons */
+.btn {
+  padding: 11px 18px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 0.94rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover { background: #C4681E; }
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.btn-ghost:hover { background: rgba(31,92,58,0.08); }
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 26px;
+  margin: 24px 0;
+}
+
+/* Forms */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: end;
+}
+
+.form-grid label,
+.track-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-grid input,
+.form-grid select,
+.track-controls input {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+}
+
+.span-2 { grid-column: 1 / -1; }
+
+.form-grid button { grid-column: 1 / -1; justify-self: start; margin-top: 4px; }
+
+/* Result / status boxes */
+.result-box {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.result-box p { margin: 0 0 12px; }
+
+#qr-code { margin: 12px 0; }
+
+.hint { font-size: 0.85rem; color: var(--text-muted); }
+
+.status-msg {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-radius: 5px;
+  background: #EAF3EC;
+  color: var(--primary-dark);
+  font-size: 0.9rem;
+}
+.status-msg.error { background: #FBEAEA; color: #8A2A2A; }
+
+/* Track section */
+.track-controls {
+  display: flex;
+  align-items: end;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.qr-reader {
+  margin-top: 18px;
+  max-width: 340px;
+}
+
+.journey-result {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.journey-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.stage-badge {
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+#journey-meta { color: var(--text-muted); font-size: 0.9rem; margin: 0 0 18px; }
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline li {
+  position: relative;
+  padding: 0 0 20px 26px;
+  border-left: 2px solid var(--line);
+}
+.timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.timeline .t-stage { font-weight: 700; color: var(--primary-dark); }
+.timeline .t-detail { font-size: 0.9rem; color: var(--text); }
+.timeline .t-time { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Footer */
+.site-footer {
+  padding: 24px 0 40px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .span-2 { grid-column: auto; }
+  .track-controls { flex-direction: column; align-items: stretch; }
+}
