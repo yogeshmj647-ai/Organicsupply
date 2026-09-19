@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriChain — Farm to Customer Traceability</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <span class="brand">AgriChain</span>
+    <button id="connect-btn" class="btn btn-primary">Connect wallet</button>
+  </div>
+  <div class="wrap">
+    <p id="wallet-status" class="wallet-status">Not connected</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- STEP 1: FARMER REGISTERS PRODUCT -->
+  <section class="card" id="register-section">
+    <h2>1. Farmer — Register product</h2>
+    <p class="card-sub">Create a new record for a harvested crop batch.</p>
+
+    <form id="register-form" class="form-grid">
+      <label>
+        Crop
+        <input type="text" name="cropName" placeholder="e.g. Rice" required>
+      </label>
+      <label>
+        Farmer name
+        <input type="text" name="farmerName" placeholder="e.g. Ravi" required>
+      </label>
+      <label>
+        Origin
+        <input type="text" name="origin" placeholder="e.g. Tamil Nadu" required>
+      </label>
+      <button type="submit" class="btn btn-primary">Register on blockchain</button>
+    </form>
+
+    <div id="register-result" class="result-box" hidden>
+      <p>Product registered with ID <strong id="new-product-id"></strong></p>
+      <div id="qr-code"></div>
+      <p class="hint">Print or save this QR code — it's what customers will scan.</p>
+    </div>
+  </section>
+
+  <!-- STEP 2: SUPPLY CHAIN STAGE UPDATES -->
+  <section class="card" id="update-section">
+    <h2>2. Supply chain — Update stage</h2>
+    <p class="card-sub">Distributor, warehouse, transport, or retailer records their handoff.</p>
+
+    <form id="update-form" class="form-grid">
+      <label>
+        Product ID
+        <input type="number" name="productId" min="1" required>
+      </label>
+      <label>
+        New stage
+        <select name="stage" required>
+          <option value="1">With distributor</option>
+          <option value="2">In warehouse</option>
+          <option value="3">In transport</option>
+          <option value="4">With retailer</option>
+          <option value="5">Delivered to customer</option>
+        </select>
+      </label>
+      <label class="span-2">
+        Details
+        <input type="text" name="details" placeholder="e.g. ABC Distributors, Chennai" required>
+      </label>
+      <button type="submit" class="btn btn-primary">Record update</button>
+    </form>
+
+    <p id="update-status" class="status-msg" hidden></p>
+  </section>
+
+  <!-- STEP 3: TRACK / SCAN -->
+  <section class="card" id="track-section">
+    <h2>3. Customer — Track product</h2>
+    <p class="card-sub">Scan a QR code or enter a product ID to see its full journey.</p>
+
+    <div class="track-controls">
+      <label>
+        Product ID
+        <input type="number" id="track-id-input" min="1">
+      </label>
+      <button id="track-btn" class="btn btn-primary">View journey</button>
+      <button id="scan-btn" class="btn btn-ghost">Scan QR code</button>
+    </div>
+
+    <div id="qr-reader" class="qr-reader" hidden></div>
+
+    <div id="journey-result" class="journey-result" hidden>
+      <div class="journey-head">
+        <h3 id="journey-title"></h3>
+        <span class="stage-badge" id="journey-stage"></span>
+      </div>
+      <p id="journey-meta"></p>
+      <ol class="timeline" id="journey-timeline"></ol>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>AgriChain demo — connects to a smart contract on a test network. Not for production use.</p>
+  </div>
+</footer>
+
+<!-- Ethers.js for talking to the smart contract -->
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+<!-- QR code generator -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<!-- QR code camera scanner -->
+<script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+<script src="app.js"></script>
+</body>
+</html>
